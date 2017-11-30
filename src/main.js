@@ -7,8 +7,6 @@ const cowsay = require('cowsay');
 
 const Faker = require('Faker');
 
-const randomName = Faker.Name.findName();
-
 class Header extends React.Component {
   render() {
     return (
@@ -24,19 +22,30 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    this.getFakeName = this.getFakeName.bind(this);
+
 
     this.state = {
-      cowsayWhat: cowsay.say({text: "Hello World!"})
+      content: cowsay.say({text: "Hello World!"})
 
 
     }
+  }
+
+  getFakeName(e) {
+
+    let randomName = Faker.Name.findName();
+    let string = 'Hello ' + randomName;
+    let content = cowsay.say({text: string});
+    this.setState({content});
   }
 
   render() {
     return (
       <div>
         <Header />
-        <pre className="cowsay">{this.state.cowsayWhat}</pre>
+        <pre className="cowsay">{this.state.content}</pre>
+        <a href="#" onClick={this.getFakeName} className="fakeName">Click Me</a>
       </div>
     )
   }
