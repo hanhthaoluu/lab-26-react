@@ -26,7 +26,7 @@ class App extends React.Component {
 
 
     this.state = {
-      content: cowsay.say({text: "Hello World!"})
+      content: cowsay.say({text: "Hello there, click on the button below  to see what Santa is saying!"})
 
 
     }
@@ -35,7 +35,7 @@ class App extends React.Component {
   getFakeName(e) {
 
     let randomName = Faker.Name.findName();
-    let string = 'Hello ' + randomName;
+    let string = 'Hello ' + randomName + '! What Do You Want for Christmas?';
     let content = cowsay.say({text: string});
     this.setState({content});
   }
@@ -45,7 +45,7 @@ class App extends React.Component {
       <div>
         <Header />
         <pre className="cowsay">{this.state.content}</pre>
-        <a href="#" onClick={this.getFakeName} className="fakeName">Click Me</a>
+        <button onClick={this.getFakeName} className="fakeName">Click Me</button>
       </div>
     )
   }
